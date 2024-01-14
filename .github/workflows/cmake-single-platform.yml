@@ -1,0 +1,99 @@
+# This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
+# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
+name: CMake on a single platform
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    # You can convert this to a matrix build if you need cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+        - name: Install Qt
+  # You may pin to the exact commit or the version.
+  # uses: jurplel/install-qt-action@b3ea5275e37b734d027040e2c7fe7a10ea2ef946
+    uses: jurplel/install-qt-action@v3.3.0
+    with:
+    # Directory to install Qt
+    dir: # optional
+    # Version of Qt to install
+    version: # optional, default is 5.15.2
+    # Host platform
+    host: # optional
+    # Target platform for build
+    target: # optional, default is desktop
+    # Architecture for Windows/Android
+    arch: # optional
+    # Whether or not to install Qt dependencies on Linux
+    install-deps: # optional, default is true
+    # Additional Qt modules to install
+    modules: # optional
+    # Specify which Qt archive to install
+    archives: # optional
+    # Whether or not to cache Qt automatically
+    cache: # optional
+    # Cache key prefix for automatic cache
+    cache-key-prefix: # optional, default is install-qt-action
+    # Whether or not to automatically run setup-python to find a valid python version.
+    setup-python: # optional, default is true
+    # Qt tools to download -- specify comma-separated argument lists which are themselves separated by spaces: <tool_name>,<tool_version>,<tool_arch>
+
+    tools: # optional
+    # Whether or not to set environment variables after running aqtinstall
+    set-env: # optional, default is true
+    # Turns off installation of Qt. Useful for installing tools, source, documentation, or examples.
+    no-qt-binaries: # optional
+    # Synonym for `no-qt-binaries`, used for backwards compatibility.
+    tools-only: # optional
+    # Version of aqtinstall to use in case of issues
+    aqtversion: # optional, default is ==2.1.*
+    # Version of py7zr to use in case of issues
+    py7zrversion: # optional, default is ==0.19.*
+    # Any extra arguments to append to the back
+    extra: # optional
+    # Whether or not to install Qt source code.
+    source: # optional
+    # Space-separated list of .7z source archives to install. Used to reduce download/image sizes.
+    src-archives: # optional
+    # Whether or not to install Qt documentation.
+    documentation: # optional
+    # Space-separated list of .7z docs archives to install. Used to reduce download/image sizes.
+    doc-archives: # optional
+    # Space-separated list of additional documentation modules to install.
+    doc-modules: # optional
+    # Whether or not to install Qt example code.
+    examples: # optional
+    # Space-separated list of .7z example archives to install. Used to reduce download/image sizes.
+    example-archives: # optional
+    # Space-separated list of additional example modules to install.
+    example-modules: # optional
+          
+
+    - name: Configure CMake
+      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      # Build your program with the given configuration
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      # Execute tests defined by the CMake configuration.
+      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+      run: ctest -C ${{env.BUILD_TYPE}}
+
