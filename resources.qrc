@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/chiken">
+        <file>chiken.png</file>
+    </qresource>
+    <qresource prefix="/subtitle">
+        <file>music.mp3</file>
+    </qresource>
+</RCC>

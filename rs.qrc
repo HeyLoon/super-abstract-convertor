@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ck">
+        <file>chiken.png</file>
+        <file>music.wav</file>
+    </qresource>
+</RCC>
