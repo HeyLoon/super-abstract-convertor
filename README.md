@@ -130,8 +130,11 @@ Vigenere Cipher和Affine Cipher相較於凱薩密碼都提供了更高的安全�
 ### 2.4 運用C++及qt實現Vigenere Cipher及Affine Cipher
 
 以下長度偏長，可以先來看結果長怎樣:)
+
 [**專案連結(Github)**](https://github.com/HeyLoon/super-abstract-convertor) (release裡面也可以找到編譯完的檔案)
+
 **[編譯後檔案直接下載連結(Google Drive)](https://drive.google.com/file/d/1xox37nsL5B9OyOR-vnaHusHRzw3trmCE/view?usp=drive_link)**
+
 如果要自己編譯，請使用qt creator並確保版本於5.9.8或以上
 
 ```C++
@@ -390,6 +393,7 @@ int main(int argc, char* argv[]) {
 ```
 
 [**專案連結(Github)**](https://github.com/HeyLoon/super-abstract-convertor)
+
 **[編譯後檔案直接下載連結(Google Drive)](https://drive.google.com/file/d/1xox37nsL5B9OyOR-vnaHusHRzw3trmCE/view?usp=drive_link)**
 
 ## 結論與討論
